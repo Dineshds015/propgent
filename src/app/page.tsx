@@ -9,8 +9,8 @@ import { Building, Home, MapPin, Key } from 'lucide-react';
 import { connection } from 'next/server';
 
 async function getFeaturedProperties() {
+  await connection(); // Opt into dynamic rendering (must be outside try/catch)
   try {
-    await connection(); // Opt into dynamic rendering
     await dbConnect();
     const properties = await Property.find({ featured: true })
       .sort({ createdAt: -1 })
