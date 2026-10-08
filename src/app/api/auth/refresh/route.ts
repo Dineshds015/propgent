@@ -1,9 +1,9 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import Admin from '@/models/Admin';
 import { signAccessToken, signRefreshToken, verifyRefreshToken, parseExpiryToSeconds } from '@/lib/auth';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const refreshToken = request.cookies.get('refreshToken')?.value;
     

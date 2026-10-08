@@ -4,6 +4,8 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
+import { Suspense } from 'react';
+
 const montserrat = Montserrat({
   variable: '--font-montserrat',
   subsets: ['latin'],
@@ -31,7 +33,9 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Header />
+        <Suspense fallback={<header className="h-20 w-full border-b border-border bg-background" />}>
+          <Header />
+        </Suspense>
         <main className="flex-1">
           {children}
         </main>
