@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PropertySearch from '@/components/search/PropertySearch';
 import PropertyCard from '@/components/property/PropertyCard';
+import ContactForm from '@/components/ContactForm';
 import dbConnect from '@/lib/mongodb';
 import Property from '@/models/Property';
 import { Building, Home, MapPin, Key } from 'lucide-react';
@@ -65,10 +66,10 @@ export default async function HomePage() {
         </div>
         
         <div className="container relative z-10 text-center text-white mt-12">
-          <h1 className="mb-6 mx-auto max-w-4xl font-heading text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white drop-shadow-md">
+          <h1 className="mb-6 mx-auto max-w-4xl font-heading text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-white drop-shadow-md">
             Welcome to <span className="text-accent">Propgent</span> Today
           </h1>
-          <p className="mb-12 mx-auto max-w-2xl text-lg md:text-xl font-medium text-white/90 drop-shadow-sm">
+          <p className="mb-12 mx-auto max-w-2xl text-base md:text-lg font-medium text-white/90 drop-shadow-sm">
             Discover a wide range of premium properties tailored to your lifestyle. We make finding your perfect home effortless.
           </p>
           
@@ -110,10 +111,10 @@ export default async function HomePage() {
         <div className="container">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <h2 className="text-primary mb-4">Featured Properties</h2>
+              <h2 className="text-3xl font-heading font-extrabold text-primary mb-4">Featured Properties</h2>
               <p className="text-muted-foreground max-w-2xl">Handpicked premium properties for you.</p>
             </div>
-            <Link href="/properties" className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 transition-colors shrink-0">
+            <Link href="/properties" className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-3.5 text-sm font-bold text-primary-foreground hover:bg-primary/90 active:scale-95 transition-all shrink-0">
               View All Properties
             </Link>
           </div>
@@ -132,8 +133,55 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* About Section */}
+      <section id="about" className="py-24 bg-white relative overflow-hidden">
+        <div className="container relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+              <Image 
+                src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1973&auto=format&fit=crop" 
+                alt="About Propgent" 
+                fill 
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-primary/10"></div>
+              <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-lg border border-gray-100 max-w-xs">
+                <p className="font-heading font-bold text-3xl text-primary mb-1">10+ Years</p>
+                <p className="text-gray-600 font-medium">Of excellence in real estate</p>
+              </div>
+            </div>
+            
+            <div className="space-y-8">
+              <div>
+                <h4 className="text-accent font-bold tracking-wider uppercase text-sm mb-3">About Propgent</h4>
+                <h2 className="text-primary text-3xl md:text-4xl font-heading font-extrabold leading-tight mb-6">
+                  We Help You Find Your Dream Home
+                </h2>
+                <p className="text-base text-gray-600 leading-relaxed mb-6">
+                  At Propgent, we believe that finding the perfect home should be an exciting and seamless journey. With over a decade of experience in the premium real estate market, our dedicated team of professionals is committed to matching you with properties that perfectly align with your lifestyle and aspirations.
+                </p>
+                <p className="text-base text-gray-600 leading-relaxed">
+                  Whether you're looking for a luxury villa, a modern apartment, or a lucrative commercial investment, we leverage our extensive network and market expertise to provide you with unparalleled service and exclusive listings.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-6 pt-6 border-t border-gray-100">
+                <div>
+                  <p className="text-3xl font-bold text-primary mb-1">5K+</p>
+                  <p className="text-gray-500 font-medium">Happy Customers</p>
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-primary mb-1">200+</p>
+                  <p className="text-gray-500 font-medium">Exclusive Properties</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden bg-primary text-primary-foreground">
+      <section className="py-24 relative overflow-hidden bg-primary text-primary-foreground mb-32">
         <div className="absolute inset-0 z-0 opacity-20">
           <Image
             src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop"
@@ -142,12 +190,12 @@ export default async function HomePage() {
             className="object-cover"
           />
         </div>
-        <div className="container relative z-10 text-center max-w-3xl mx-auto">
-          <h2 className="text-white mb-6">Need Help Finding A Home?</h2>
-          <p className="text-white/80 text-lg mb-10">
+        <div className="container relative z-10 text-center max-w-3xl mx-auto pb-12">
+          <h2 className="text-3xl font-heading font-extrabold text-white mb-6">Need Help Finding A Home?</h2>
+          <p className="text-white/80 text-base mb-10">
             Our team of expert real estate agents is ready to assist you in finding the perfect property that matches your requirements and budget.
           </p>
-          <Link href="/#contact" className="inline-flex items-center justify-center rounded-full bg-accent px-10 py-4 text-base font-extrabold text-accent-foreground hover:bg-white hover:text-primary transition-all duration-300 shadow-xl hover:shadow-2xl">
+          <Link href="/contact" className="inline-flex items-center justify-center rounded-full bg-accent px-8 py-3 text-sm font-bold text-accent-foreground hover:bg-white hover:text-primary active:scale-95 transition-all duration-300 shadow-xl hover:shadow-2xl">
             Contact Us Today
           </Link>
         </div>

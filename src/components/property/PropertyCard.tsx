@@ -35,14 +35,14 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         </div>
       </div>
 
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-4 mb-2">
-          <h3 className="font-heading font-bold text-lg text-primary line-clamp-1 flex-1">
+      <div className="p-4 md:p-5">
+        <div className="flex items-start justify-between gap-3 mb-2">
+          <h3 className="font-heading font-bold text-base text-primary line-clamp-1 flex-1">
             {property.title}
           </h3>
-          <p className="font-bold text-xl text-primary shrink-0">
+          <p className="font-bold text-lg text-primary shrink-0">
             ₹{property.price?.toLocaleString('en-IN')}
-            {property.listingType === 'Rent' && <span className="text-sm text-muted-foreground font-normal">/mo</span>}
+            {property.listingType === 'Rent' && <span className="text-xs text-muted-foreground font-normal">/mo</span>}
           </p>
         </div>
 

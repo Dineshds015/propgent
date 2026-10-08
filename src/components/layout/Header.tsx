@@ -2,10 +2,15 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Home, Search, Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isHome = pathname === '/';
+  const aboutHref = isHome ? '#about' : '/#about';
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -29,10 +34,10 @@ export default function Header() {
           <Link href="/properties" className="text-sm font-semibold text-primary hover:text-accent-foreground transition-colors">
             Properties
           </Link>
-          <Link href="/#about" className="text-sm font-semibold text-primary hover:text-accent-foreground transition-colors">
+          <Link href={aboutHref} className="text-sm font-semibold text-primary hover:text-accent-foreground transition-colors">
             About
           </Link>
-          <Link href="/#contact" className="text-sm font-semibold text-primary hover:text-accent-foreground transition-colors">
+          <Link href="/contact" className="text-sm font-semibold text-primary hover:text-accent-foreground transition-colors">
             Contact
           </Link>
         </nav>
@@ -40,7 +45,7 @@ export default function Header() {
         <div className="flex items-center gap-4">
           <Link 
             href="/properties" 
-            className="hidden md:flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+            className="hidden md:flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 active:scale-95 transition-all duration-200 shadow-sm hover:shadow-md"
           >
             <Search size={18} />
             Find Property
@@ -48,7 +53,7 @@ export default function Header() {
           
           {/* Mobile Menu Toggle */}
           <button 
-            className="md:hidden flex items-center justify-center rounded-md p-2 text-primary hover:bg-muted"
+            className="md:hidden flex items-center justify-center rounded-md p-2 text-primary hover:bg-muted active:scale-95 transition-transform"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -65,15 +70,15 @@ export default function Header() {
           <Link href="/properties" className="text-lg font-semibold text-primary hover:text-accent-foreground transition-colors py-2 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
             Properties
           </Link>
-          <Link href="/#about" className="text-lg font-semibold text-primary hover:text-accent-foreground transition-colors py-2 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href={aboutHref} className="text-lg font-semibold text-primary hover:text-accent-foreground transition-colors py-2 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
             About
           </Link>
-          <Link href="/#contact" className="text-lg font-semibold text-primary hover:text-accent-foreground transition-colors py-2 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
+          <Link href="/contact" className="text-lg font-semibold text-primary hover:text-accent-foreground transition-colors py-2 border-b border-gray-100" onClick={() => setIsMobileMenuOpen(false)}>
             Contact
           </Link>
           <Link 
             href="/properties" 
-            className="flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 mt-2 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition-colors shadow-sm"
+            className="flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 mt-2 text-base font-semibold text-primary-foreground hover:bg-primary/90 active:scale-95 transition-all shadow-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <Search size={18} />

@@ -117,7 +117,7 @@ export default function PropertySearch({ compact = false }: { compact?: boolean 
 
         <button 
           type="submit"
-          className="h-12 w-full rounded-xl bg-accent text-accent-foreground font-bold hover:bg-accent/90 transition-colors shadow-md flex items-center justify-center gap-2"
+          className="h-12 w-full rounded-xl bg-accent text-accent-foreground font-bold hover:bg-accent/90 active:scale-95 transition-all shadow-md flex items-center justify-center gap-2"
         >
           <Search size={20} />
           <span>Search</span>

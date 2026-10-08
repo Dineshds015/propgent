@@ -13,10 +13,12 @@ export async function POST(request: Request) {
     // Validate the incoming request body
     const validatedData = propertyQuerySchema.parse(body);
 
-    // Ensure the property exists
-    const propertyExists = await Property.exists({ _id: validatedData.propertyId });
-    if (!propertyExists) {
-      return NextResponse.json({ error: 'Property not found' }, { status: 404 });
+    // Ensure the property exists if propertyId is provided
+    if (validatedData.propertyId) {
+      const propertyExists = await Property.exists({ _id: validatedData.propertyId });
+      if (!propertyExists) {
+        return NextResponse.json({ error: 'Property not found' }, { status: 404 });
+      }
     }
 
     // Create the inquiry
@@ -31,7 +33,7 @@ export async function POST(request: Request) {
     if (error.name === 'ZodError') {
       return NextResponse.json({ error: error.errors }, { status: 400 });
     }
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: error.message || 'Internal Server Error', stack: error.stack }, { status: 500 });
   }
 }
 

@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Propgent | Premium Properties',
+  title: 'propgent',
   description: 'Discover and explore properties that match your needs and find your perfect home.',
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
         className={`${montserrat.variable} ${inter.variable} antialiased min-h-screen flex flex-col`}
       >

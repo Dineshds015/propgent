@@ -7,6 +7,8 @@ import { propertySearchSchema } from '@/lib/validations';
 import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
+import { connection } from 'next/server';
+
 export const metadata: Metadata = {
   title: 'Properties | Propgent',
   description: 'Search and filter through our extensive list of premium properties.',
@@ -17,6 +19,7 @@ export default async function PropertiesPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  await connection(); // Opt into dynamic rendering to avoid prerendering crash
   await dbConnect();
   
   const resolvedSearchParams = await searchParams;

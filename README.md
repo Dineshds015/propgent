@@ -70,3 +70,20 @@ To start the production server:
 ```bash
 npm start
 ```
+
+## Deployment
+
+This project is perfectly optimized for deployment on **Vercel**.
+
+### Vercel Dashboard Deployment (Recommended)
+1. Push your code to a GitHub repository.
+2. Go to your [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New... > Project**.
+3. Import your GitHub repository.
+4. In the configuration settings, open the **Environment Variables** section and add the following:
+   - `MONGODB_URI`: Your production MongoDB connection string.
+   - `JWT_SECRET`: A secure random string for signing JWT tokens.
+   - `ADMIN_USERNAME`: Your chosen admin username.
+   - `ADMIN_PASSWORD`: Your chosen admin password.
+   - `JWT_ACCESS_EXPIRY`: e.g. `15m`
+   - `JWT_REFRESH_EXPIRY`: e.g. `7d`
+5. Click **Deploy**. Vercel will automatically detect Next.js and deploy your application seamlessly!

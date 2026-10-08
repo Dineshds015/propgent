@@ -12,7 +12,7 @@ export interface IPropertyQuery extends Document {
 
 const PropertyQuerySchema: Schema = new Schema(
   {
-    propertyId: { type: Schema.Types.ObjectId, ref: 'Property', required: true, index: true },
+    propertyId: { type: Schema.Types.ObjectId, ref: 'Property', required: false, index: true },
     name: { type: String, required: true },
     mobile: { type: String, required: true },
     email: { type: String },
@@ -23,4 +23,6 @@ const PropertyQuerySchema: Schema = new Schema(
   }
 );
 
-export default mongoose.models.PropertyQuery || mongoose.model<IPropertyQuery>('PropertyQuery', PropertyQuerySchema);
+// Delete cached model to ensure schema updates take effect during Next.js HMR
+delete mongoose.models.PropertyQuery;
+export default mongoose.model<IPropertyQuery>('PropertyQuery', PropertyQuerySchema);

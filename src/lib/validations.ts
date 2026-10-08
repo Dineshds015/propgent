@@ -17,7 +17,7 @@ export const propertySearchSchema = z.object({
 export const propertyQuerySchema = z.object({
   propertyId: z.string().refine((val) => mongoose.Types.ObjectId.isValid(val), {
     message: 'Invalid property ID',
-  }),
+  }).optional(),
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   mobile: z
     .string()
